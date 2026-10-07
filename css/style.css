@@ -683,3 +683,76 @@ section{position:relative}
 .case-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.case-gallery .frame{aspect-ratio:4/3}.case-gallery .frame:first-child:last-child{grid-column:1/-1;aspect-ratio:16/9}
 .case-nav{display:flex;justify-content:space-between;gap:24px;padding:28px 0;border-top:1px solid var(--line);font-weight:700}.case-nav a:last-child{text-align:right}
 @media(max-width:760px){.case-layout{grid-template-columns:1fr}.case-gallery{grid-template-columns:1fr}.case-gallery .frame:first-child:last-child{aspect-ratio:4/3}.project-filters{overflow:auto;flex-wrap:nowrap;padding-bottom:5px}.filter-chip{white-space:nowrap}.case-nav{font-size:.9rem}}
+
+
+/* ---------- Mobile: seções em duas colunas (.split) ---------- */
+/* Abaixo de 900px o layout vira uma coluna só. Um título "sticky" aqui ficaria
+   preso por cima do conteúdo (no Sobre, sobre os itens; no Instagram/Site, ocupando
+   270px da tela). Por isso, no celular o título rola normalmente. O efeito sticky
+   continua só no desktop (regra global .split .sticky-note). */
+@media (max-width: 899px){
+  .split .sticky-note{
+    position: static;
+  }
+}
+
+/* ---------- Mobile: seção "Instagram é vitrine / Site é endereço" ---------- */
+/* Cada benefício gruda logo abaixo do menu e o próximo sobe cobrindo o anterior:
+   um por vez, sem texto sobreposto, com contador para mostrar a progressão. */
+@media (max-width: 899px){
+  .section--paper .split .dot-list{
+    gap: 0;
+    position: relative;
+    counter-reset: step;
+  }
+
+  .section--paper .split .dot-list li{
+    position: sticky;
+    top: 88px;
+    min-height: 210px;
+    align-items: flex-start;
+    padding: 30px 64px 30px 18px;
+    margin: 0;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    border-bottom: 0;
+    box-shadow: 0 -10px 24px rgba(10,10,10,.035);
+    counter-increment: step;
+  }
+
+  .section--paper .split .dot-list li::after{
+    content: "0" counter(step);
+    position: absolute;
+    top: 30px;
+    right: 18px;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--gray-500, #777);
+  }
+
+  .section--paper .split .dot-list li:nth-child(1){ z-index: 1; }
+  .section--paper .split .dot-list li:nth-child(2){ z-index: 2; }
+  .section--paper .split .dot-list li:nth-child(3){ z-index: 3; }
+  .section--paper .split .dot-list li:nth-child(4){ z-index: 4; }
+  .section--paper .split .dot-list li:nth-child(5){ z-index: 5; }
+  .section--paper .split .dot-list li:nth-child(6){ z-index: 6; }
+
+  .section--paper .split .dot-list li:last-child{
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* ---------- Sobre mim: foto pessoal opcional ---------- */
+/* Coloque a foto em public/images/brand/igor-cabral.jpg.
+   O tratamento escuro mantém a estética do site e deixa o texto "igor."
+   legível por cima da imagem. */
+.about-visual{
+  background-color: #0a0a0a;
+  background-image:
+    linear-gradient(to top, rgba(10,10,10,.9) 0%, rgba(10,10,10,.5) 30%, rgba(10,10,10,0) 58%),
+    linear-gradient(rgba(10,10,10,.34), rgba(10,10,10,.5)),
+    url("../public/images/brand/igor-cabral.jpg");
+  background-size: cover;
+  background-position: center 35%;
+}
