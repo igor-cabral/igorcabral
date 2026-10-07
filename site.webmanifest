@@ -1,0 +1,10 @@
+{
+  "name": "igor cabral. — design & web",
+  "short_name": "igor cabral.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "lang": "pt-BR",
+  "icons": [{"src":"/public/images/system/favicon.svg","sizes":"any","type":"image/svg+xml"}]
+}

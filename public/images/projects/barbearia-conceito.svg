@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200">
+<rect width="1600" height="1200" fill="#111"/><rect x="70" y="70" width="1460" height="1060" rx="10" fill="#f3f1eb"/>
+<text x="130" y="155" font-family="Arial,sans-serif" font-size="24" fill="#777" letter-spacing="5">PROJETO CONCEITUAL / BARBEARIA</text>
+<text x="130" y="300" font-family="Arial,sans-serif" font-weight="800" font-size="100" fill="#111">CORTE.</text>
+<text x="130" y="390" font-family="Arial,sans-serif" font-size="30" fill="#444">barbearia contemporânea</text>
+<rect x="130" y="470" width="420" height="470" fill="#191919"/><circle cx="340" cy="705" r="150" fill="#d8d2c8"/><path d="M280 790 Q340 650 400 790" fill="none" stroke="#191919" stroke-width="30"/><rect x="610" y="470" width="760" height="110" fill="#111"/><rect x="610" y="610" width="360" height="24" fill="#bbb"/><rect x="610" y="670" width="520" height="24" fill="#bbb"/><rect x="610" y="730" width="450" height="24" fill="#bbb"/><text x="610" y="875" font-family="Arial,sans-serif" font-size="24" fill="#111">AGENDE SEU HORÁRIO</text><circle cx="1335" cy="875" r="35" fill="#111"/>
+</svg>

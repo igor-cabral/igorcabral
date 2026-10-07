@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto — igor cabral. design & web</title>
+<meta name="description" content="Case de design e desenvolvimento web por Igor Cabral.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="../public/images/system/favicon.svg">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="site-header"><nav class="nav wrap">
+  <a href="../index.html" class="brand-logo"><img src="../public/images/brand/logo-white.png" alt="igor cabral. — design & web"></a>
+  <ul class="nav-links"><li><a href="../index.html">Início</a></li><li><a href="index.html" aria-current="page">Projetos</a></li><li><a href="../servicos.html">Serviços</a></li><li><a href="../sobre.html">Sobre</a></li><li><a href="../contato.html">Contato</a></li></ul>
+  <div class="nav-cta"><a href="#" class="btn btn--sm" data-wa-link>Quero criar meu site</a><button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button></div>
+</nav></header>
+<main id="project-main">
+  <section class="page-hero"><div class="wrap">
+    <div class="breadcrumb small" style="margin-bottom:18px;"><a href="index.html">Projetos</a> / <span id="p-name-crumb"></span></div>
+    <div class="case-kicker" id="p-kicker"></div>
+    <h1 class="display" style="font-size:clamp(2.5rem,7vw,6rem);" id="p-name"></h1>
+    <p class="lede" style="margin-top:18px;max-width:70ch;" id="p-description"></p>
+  </div></section>
+  <section style="padding-top:0;"><div class="wrap"><div class="frame case-cover reveal" id="p-cover"></div></div></section>
+  <section><div class="wrap case-layout reveal">
+    <aside class="case-facts" id="p-facts"></aside>
+    <div class="case-copy">
+      <div><span class="eyebrow">O contexto</span><p class="body" id="p-context"></p></div>
+      <div><span class="eyebrow">O desafio</span><p class="body" id="p-challenge"></p></div>
+      <div><span class="eyebrow">A solução</span><p class="body" id="p-solution"></p></div>
+    </div>
+  </div></section>
+  <section class="section--paper"><div class="wrap"><div class="case-gallery reveal" id="p-gallery"></div></div></section>
+  <section class="cta-final"><div class="wrap">
+    <span class="eyebrow">Tem um projeto em mente?</span>
+    <h2 class="h2" style="max-width:15ch;">Quero um site parecido<span class="dot dot--lg"></span></h2>
+    <div class="hero-foot" style="margin-top:28px;"><a href="#" class="btn" id="case-wa">Falar sobre meu projeto</a><a id="p-visit" href="#" class="btn btn--ghost" target="_blank" rel="noopener" hidden>Visitar site</a></div>
+  </div></section>
+  <section><div class="wrap"><div class="case-nav" id="case-nav"></div></div></section>
+</main>
+<footer class="site-footer"><div class="wrap"><div class="footer-bottom" style="border-top:none;padding-top:0;"><span>© 2026 Igor Cabral. Todos os direitos reservados.</span><span>igorcabral.com.br</span></div></div><div class="footer-legal"><a href="../politica-de-privacidade.html">Política de Privacidade</a></div></footer>
+<script src="../js/config.js"></script><script src="../js/projects-data.js"></script><script src="../js/projects-render.js"></script><script src="../js/analytics.js"></script><script src="../js/main.js"></script>
+<script>
+(function(){
+  const slug = new URLSearchParams(location.search).get('slug');
+  const project = getProjectBySlug(slug);
+  if(!project){ location.replace('index.html'); return; }
+  const $ = id => document.getElementById(id);
+  const list = a => Array.isArray(a) ? a.filter(Boolean) : [];
+  const cover = project.cover || (project.images && project.images[0] && project.images[0].src) || '';
+  const extra = list(project.images).filter(i => i.src !== cover);
+
+  document.title = `${project.name} — Projeto${project.category ? ' de ' + project.category : ''} | igor cabral.`;
+  document.querySelector('meta[name="description"]').content = project.description || `Case ${project.name} por Igor Cabral.`;
+  $('p-name').textContent = project.name;
+  $('p-name-crumb').textContent = project.name;
+  $('p-description').textContent = project.description || '';
+  $('p-description').hidden = !project.description;
+  $('p-kicker').textContent = [project.status, project.segment, project.year].filter(Boolean).join(' · ');
+
+  [['p-context', project.context], ['p-challenge', project.challenge], ['p-solution', project.solution]].forEach(([id, text]) => {
+    $(id).textContent = text || '';
+    $(id).parentElement.style.display = text ? '' : 'none';
+  });
+
+  if (cover) $('p-cover').innerHTML = `<img src="${esc(cover)}" alt="${esc(project.name)} — capa do projeto">`;
+  else $('p-cover').closest('section').style.display = 'none';
+
+  const facts = [
+    ['Categoria', project.category], ['Segmento', project.segment], ['Status', project.status],
+    ['Entregas', list(project.delivery).join(' · ')], ['Tecnologias', list(project.technologies).join(' · ')]
+  ].filter(([, v]) => v);
+  $('p-facts').innerHTML = facts.map(([k, v]) => `<div><span class="small">${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
+
+  const gallery = $('p-gallery');
+  extra.forEach((image, i) => {
+    const figure = document.createElement('figure'); figure.className = 'frame';
+    figure.innerHTML = `<img src="${esc(image.src)}" alt="${esc(image.alt || project.name + ' — imagem ' + (i + 2))}" loading="lazy">`;
+    gallery.appendChild(figure);
+  });
+  if (!extra.length) gallery.closest('section').style.display = 'none';
+
+  const visit = $('p-visit');
+  if(project.externalUrl){ visit.href = project.externalUrl; visit.hidden = false; }
+  $('case-wa').href = waLink(`Oi, Igor! Vi o projeto “${project.name}” no seu portfólio e gostaria de conversar sobre um site parecido para o meu negócio.`);
+
+  if (PROJECTS.length > 1){
+    const index = PROJECTS.findIndex(p => p.slug === project.slug);
+    const prev = PROJECTS[(index - 1 + PROJECTS.length) % PROJECTS.length], next = PROJECTS[(index + 1) % PROJECTS.length];
+    $('case-nav').innerHTML = `<a href="${esc(projectUrl(prev))}">← ${esc(prev.name)}</a><a href="${esc(projectUrl(next))}">${esc(next.name)} →</a>`;
+  } else $('case-nav').closest('section').style.display = 'none';
+})();
+</script>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos — igor cabral. design & web</title>
+<meta name="description" content="Veja os sites e landing pages já criados por igor cabral. design & web para pequenos negócios.">
+<link rel="canonical" href="https://igorcabral.com.br/projetos/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projetos — igor cabral. design & web">
+<meta property="og:description" content="Trabalhos feitos para pequenos negócios locais.">
+<meta property="og:image" content="https://igorcabral.com.br/public/images/system/og-image.svg">
+<meta property="og:url" content="https://igorcabral.com.br/projetos/">
+<meta property="og:locale" content="pt_BR">
+<meta name="theme-color" content="#0a0a0a"><link rel="manifest" href="../../site.webmanifest"><link rel="icon" href="../public/images/system/favicon.svg">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="../index.html" class="brand-logo"><img src="../public/images/brand/logo-white.png" alt="igor cabral. — design &amp; web"></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="index.html" data-path="/projetos/" aria-current="page">Projetos</a></li>
+      <li><a href="../servicos.html">Serviços</a></li>
+      <li><a href="../sobre.html">Sobre</a></li>
+      <li><a href="../contato.html">Contato</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" class="btn btn--sm" data-wa-link>Quero criar meu site</a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1 class="display" style="font-size:clamp(2.2rem,4.4vw,3.6rem);">Projetos</h1>
+      <p class="lede" style="margin-top:18px;">
+        Projetos reais e conceitos que mostram como diferentes negócios podem ganhar um endereço digital próprio.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="project-filters reveal" id="project-filters" aria-label="Filtrar projetos"></div>
+      <div class="project-grid reveal" id="all-projects"></div>
+      <p class="center-note" id="empty-note" style="display:none;">Nenhum projeto nesta categoria.</p>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="wrap">
+      <h2 class="h2" style="max-width:16ch;">O próximo projeto pode ser o do seu negócio<span class="dot dot--lg"></span></h2>
+      <div class="hero-foot" style="margin-top:28px;">
+        <a href="#" class="btn" data-wa-link>Quero criar meu site</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div><div class="brand-logo"><img src="../public/images/brand/logo-white.png" alt="igor cabral. — design &amp; web"></div></div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="index.html">Projetos</a></li>
+            <li><a href="../servicos.html">Serviços</a></li>
+            <li><a href="../sobre.html">Sobre</a></li>
+            <li><a href="../contato.html">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="#" data-wa-link>WhatsApp</a></li>
+            <li><a href="#" data-ig-link><span data-ig-handle></span></a></li>
+            <li><a href="#" data-email-link><span data-email-text></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Igor Cabral. Todos os direitos reservados.</span>
+      <span>igorcabral.com.br</span>
+    </div>
+  </div>
+<div class="footer-legal"><a href="../politica-de-privacidade.html">Política de Privacidade</a></div></footer>
+
+<script src="../js/config.js"></script>
+<script src="../js/projects-data.js"></script>
+<script src="../js/projects-render.js"></script>
+<script src="../js/analytics.js"></script><script src="../js/main.js"></script>
+<script>
+  const grid = document.getElementById('all-projects');
+  const filters = document.getElementById('project-filters');
+  const categories = ['Todos', ...new Set(PROJECTS.map(p => p.category)), 'Projetos conceituais'];
+  function showProjects(filter='Todos'){
+    const list = filter === 'Todos' ? PROJECTS : filter === 'Projetos conceituais' ? PROJECTS.filter(p => p.status === 'Projeto conceitual') : PROJECTS.filter(p => p.category === filter);
+    renderProjectGrid(grid, list);
+    document.getElementById('empty-note').style.display = list.length ? 'none' : 'block';
+    [...filters.children].forEach(btn => btn.classList.toggle('is-active', btn.dataset.filter === filter));
+  }
+  categories.forEach(category => {
+    const button = document.createElement('button'); button.type='button'; button.className='filter-chip'; button.dataset.filter=category; button.textContent=category; button.addEventListener('click',()=>showProjects(category)); filters.appendChild(button);
+  });
+  showProjects();
+</script>
+</body>
+</html>
