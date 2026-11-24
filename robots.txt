@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+<<<<<<< HEAD
 Sitemap: https://igorcabral.dev.br/sitemap.xml
+=======
+Sitemap: https://igorcabral.com.br/sitemap.xml
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f

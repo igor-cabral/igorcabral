@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/* versão 2026-10-08 */
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
 /* ============================================================
    igor cabral. design & web — design system
    Preto + branco. Tipografia como identidade. O ponto como motivo.
@@ -685,6 +689,7 @@ section{position:relative}
 @media(max-width:760px){.case-layout{grid-template-columns:1fr}.case-gallery{grid-template-columns:1fr}.case-gallery .frame:first-child:last-child{aspect-ratio:4/3}.project-filters{overflow:auto;flex-wrap:nowrap;padding-bottom:5px}.filter-chip{white-space:nowrap}.case-nav{font-size:.9rem}}
 
 
+<<<<<<< HEAD
 /* ---------- Mobile: seção "Instagram é vitrine / Site é endereço" ---------- */
 /* No celular, o título continua acompanhando a leitura, mas cada benefício
    ocupa seu próprio momento e cobre o anterior suavemente. */
@@ -700,25 +705,73 @@ section{position:relative}
   .section--paper .split .dot-list{
     gap: 0;
     position: relative;
+=======
+/* ---------- Mobile: seções em duas colunas (.split) ---------- */
+/* Abaixo de 900px o layout vira uma coluna só. Um título "sticky" aqui ficaria
+   preso por cima do conteúdo (no Sobre, sobre os itens; no Instagram/Site, ocupando
+   270px da tela). Por isso, no celular o título rola normalmente. O efeito sticky
+   continua só no desktop (regra global .split .sticky-note). */
+@media (max-width: 899px){
+  .split .sticky-note{
+    position: static;
+  }
+}
+
+/* ---------- Mobile: seção "Instagram é vitrine / Site é endereço" ---------- */
+/* Cada benefício gruda logo abaixo do menu e o próximo sobe cobrindo o anterior:
+   um por vez, sem texto sobreposto, com contador para mostrar a progressão. */
+@media (max-width: 899px){
+  .section--paper .split .dot-list{
+    gap: 0;
+    position: relative;
+    counter-reset: step;
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
   }
 
   .section--paper .split .dot-list li{
     position: sticky;
+<<<<<<< HEAD
     top: 205px;
     min-height: 190px;
     align-items: flex-start;
     padding: 30px 18px;
+=======
+    top: 88px;
+    min-height: 210px;
+    align-items: flex-start;
+    padding: 30px 64px 30px 18px;
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
     margin: 0;
     background: var(--paper);
     border-top: 1px solid var(--line);
     border-bottom: 0;
     box-shadow: 0 -10px 24px rgba(10,10,10,.035);
+<<<<<<< HEAD
+=======
+    counter-increment: step;
+  }
+
+  .section--paper .split .dot-list li::after{
+    content: "0" counter(step);
+    position: absolute;
+    top: 30px;
+    right: 18px;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--gray-500, #777);
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
   }
 
   .section--paper .split .dot-list li:nth-child(1){ z-index: 1; }
   .section--paper .split .dot-list li:nth-child(2){ z-index: 2; }
   .section--paper .split .dot-list li:nth-child(3){ z-index: 3; }
   .section--paper .split .dot-list li:nth-child(4){ z-index: 4; }
+<<<<<<< HEAD
+=======
+  .section--paper .split .dot-list li:nth-child(5){ z-index: 5; }
+  .section--paper .split .dot-list li:nth-child(6){ z-index: 6; }
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
 
   .section--paper .split .dot-list li:last-child{
     border-bottom: 1px solid var(--line);
@@ -738,3 +791,134 @@ section{position:relative}
   background-size: cover;
   background-position: center 35%;
 }
+<<<<<<< HEAD
+=======
+@media (max-width: 899px){
+  .about-visual{ background-position: center 50%; }
+}
+
+
+/* ---------- Sem rolagem lateral em nenhuma tela ---------- */
+/* A proteção fica só no body (como no original). NÃO colocar overflow no <html>:
+   o main.js trava a rolagem com body.style.overflow = "hidden" ao abrir o menu, e isso
+   só funciona sem quebrar o cabeçalho sticky se o overflow do body for repassado à janela,
+   o que deixa de acontecer quando o <html> também define overflow. */
+body{ overflow-x: hidden; overflow-x: clip; }
+
+/* Menu mobile: fechado, ele fica invisível no próprio lugar (antes era empurrado
+   para fora da tela, à direita, e alargava a página). */
+@media (max-width: 860px){
+  .nav-links{
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--dur-m) var(--ease), transform var(--dur-m) var(--ease), visibility 0s linear var(--dur-m);
+  }
+  .nav-links.is-open{
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+}
+
+/* Cards de projeto: colunas que podem encolher e uma coluna só no celular. */
+.project-grid{ grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.project-card{ min-width: 0; }
+.project-card .meta{ flex-wrap: wrap; }
+@media (max-width: 760px){
+  /* Uma coluna só: o grid de 12 colunas + espaçamento passava da largura da tela. */
+  .project-grid{ grid-template-columns: minmax(0, 1fr); }
+  .project-grid .project-card,
+  .project-grid .project-card:nth-child(3n){ grid-column: auto; }
+  .project-card .meta span{ white-space: normal; }
+}
+
+
+/* ================= Ajustes da rodada ================= */
+
+/* Menu mobile: sem backdrop-filter no cabeçalho, o menu (position: fixed) passa a ser
+   posicionado em relação à tela e não ao cabeçalho: sempre aparece onde a pessoa está. */
+@media (max-width: 860px){
+  .site-header{
+    background: #fff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Botão do menu: ao abrir vira uma faixa única (—), sempre preta. */
+.nav-toggle[aria-expanded="true"] span{ background: var(--black); }
+.nav-toggle[aria-expanded="true"] span::before,
+.nav-toggle[aria-expanded="true"] span::after{
+  transform: none;
+  opacity: 0;
+  background: var(--black);
+}
+
+/* "Ver projetos" no CTA final: fundo branco e texto preto; no hover, o contrário com borda branca. */
+.cta-final .btn--ghost{
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #fff;
+}
+.cta-final .btn--ghost::before{ background: #0a0a0a; }
+.cta-final .btn--ghost:hover{
+  background: #0a0a0a;
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Ponto do CTA final: menor e quadrado, como o ponto da logo. */
+.cta-final .dot--lg{
+  width: 0.2em;
+  height: 0.2em;
+  border-radius: 0;
+  margin-left: 0.08em;
+}
+.cta-final::before{
+  content: "";
+  width: clamp(72px, 14vw, 190px);
+  height: clamp(72px, 14vw, 190px);
+  background: #fff;
+  font-size: 0;
+  line-height: 0;
+  right: 4%;
+  bottom: 8%;
+}
+@media (max-width: 620px){
+  .cta-final::before{
+    width: 52px;
+    height: 52px;
+    top: 36px;
+    bottom: auto;
+    right: var(--gutter);
+  }
+}
+
+/* Menu mobile à prova de navegador: no celular o cabeçalho é "fixed" (e não "sticky"),
+   então o menu, que também é fixed, sempre abre em relação à tela, onde a pessoa está. */
+@media (max-width: 860px){
+  :root{ --hdr: 80.02px; }
+  html{ scroll-padding-top: var(--hdr); }
+  body{ padding-top: var(--hdr); }
+  .site-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .nav-links{
+    top: var(--hdr);
+    height: calc(100vh - var(--hdr));
+    height: calc(100dvh - var(--hdr));
+  }
+}
+@media (max-width: 620px){
+  :root{ --hdr: 73px; }
+}
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f

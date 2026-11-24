@@ -11,7 +11,11 @@ const SITE_CONFIG = {
   },
   "whatsapp": {
     "number": "5547996603119",
+<<<<<<< HEAD
     "defaultMessage": "Oi, Igor! Vi seu site e quero criar o site do meu negócio!"
+=======
+    "defaultMessage": "Oi, Igor! Vi seu site e quero criar o site do meu negócio."
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
   },
   "instagram": {
     "handle": "@igorlcabral",
@@ -22,8 +26,13 @@ const SITE_CONFIG = {
     "measurementId": "G-CE81W2685L"
   },
   "prices": {
+<<<<<<< HEAD
     "siteMin": 250,
     "siteMax": 2000,
+=======
+    "siteMin": 200,
+    "siteMax": 500,
+>>>>>>> 0edd72719e096dcec097a80434b7f10eaa43b98f
     "domain": 40,
     "currency": "R$"
   }
